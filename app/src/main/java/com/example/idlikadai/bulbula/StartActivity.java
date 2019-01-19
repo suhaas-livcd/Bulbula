@@ -1,8 +1,10 @@
 package com.example.idlikadai.bulbula;
 
+import android.content.DialogInterface;
 import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -146,7 +148,7 @@ public class StartActivity extends AppCompatActivity implements Bubble.BubbleLis
         mScore = 0;
         mLevel = 0;
         mPinsUsed = 0;
-
+        updateLivesOnStart();
 //        for (ImageView pin : mPinImages) {
 //            pin.setImageResource(R.drawable.ic_cards_heart);
 //        }
@@ -167,10 +169,36 @@ public class StartActivity extends AppCompatActivity implements Bubble.BubbleLis
     }
 
     private void finishLevel() {
-        Toast.makeText(this, String.format("You finished level %d", mLevel), Toast.LENGTH_SHORT)
-                .show();
+//        Toast.makeText(this, String.format("You finished level %d", mLevel), Toast.LENGTH_SHORT)
+//                .show();
         mPlaying = false;
-        mGoButton.setText(String.format("Start level %d", mLevel + 1));
+
+        AlertDialog.Builder builder;
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+//            builder = new AlertDialog.Builder(StartActivity.this, android.R.style.Theme_DeviceDefault_Dialog);
+//        } else {
+        builder = new AlertDialog.Builder(StartActivity.this);
+//        }
+
+        builder.setTitle("Hurrah!! Level Up ")
+                .setMessage("Continue to level " +
+                        String.format("%d", mLevel + 1))
+                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        findViewById(R.id.settings).performClick();
+                    }
+                })
+                .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        onBackPressed();
+                    }
+                })
+                .setIcon(android.R.drawable.star_big_on)
+                .setCancelable(false)
+                .show();
+
+
+//        mGoButton.setText(String.format("Start level %d", mLevel + 1));
     }
 
     public void goButtonClickHandler(View view) {
@@ -284,6 +312,21 @@ public class StartActivity extends AppCompatActivity implements Bubble.BubbleLis
                 break;
             default:
         }
+    }
+
+    private void updateLivesOnStart() {
+        mhealth_100.setVisibility(View.VISIBLE);
+        mhealth_90.setVisibility(View.GONE);
+        mhealth_80.setVisibility(View.GONE);
+
+        mhealth_70.setVisibility(View.VISIBLE);
+        mhealth_60.setVisibility(View.GONE);
+        mhealth_50.setVisibility(View.GONE);
+
+        mhealth_40.setVisibility(View.VISIBLE);
+        mhealth_30.setVisibility(View.GONE);
+        mhealth_20.setVisibility(View.GONE);
+
     }
 
     @Override
