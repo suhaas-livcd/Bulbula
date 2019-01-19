@@ -151,6 +151,7 @@
             android:background="@color/colorAmericanRiver" />
 
         <TextView
+            android:id="@+id/textView_gameLevel"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center"
@@ -191,6 +192,7 @@
             android:background="@color/colorAmericanRiver" />
 
         <TextView
+            android:id="@+id/textView_gameScore"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center"
@@ -265,14 +267,15 @@
             android:layout_gravity="center"
             android:padding="5dip">
 
-            <ImageView
+            <Button
                 android:id="@+id/settings"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:scaleType="fitXY"
-                android:src="@drawable/ic_settings"
+                android:background="@drawable/ic_settings"
                 android:tint="@color/colorAmericanRiver"
-                android:visibility="visible" />
+                android:visibility="visible"
+                android:onClick="goButtonClickHandler" />
         </FrameLayout>
     </LinearLayout>
 
