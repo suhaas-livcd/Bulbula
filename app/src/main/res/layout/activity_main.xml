@@ -8,34 +8,44 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
         android:layout_gravity="center"
-        android:gravity="center">
+        android:gravity="center"
+        android:orientation="vertical">
 
         <TextView
-            android:id="@+id/mainActivity_textView_Intro_1"
+            android:id="@+id/mainActivity_menuOption_Start"
             android:layout_width="200dip"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/my_custom_font"
             android:gravity="center"
             android:text="@string/menu_Start"
-            android:textColor="@color/colorForestBlues" />
+            android:textColor="@color/colorForestBlues"
+            android:textSize="40dip"
+            android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/mainActivity_textView_Intro_2"
+            android:id="@+id/mainActivity_menuOption_Sound"
             android:layout_width="200dip"
             android:layout_height="wrap_content"
+            android:layout_marginTop="20dip"
+            android:fontFamily="@font/my_custom_font"
             android:gravity="center"
             android:text="@string/menu_Sound"
             android:textColor="@color/colorForestBlues"
-            android:layout_marginTop="20dip" />
+            android:textSize="40dip"
+            android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/mainActivity_textView_Intro_3"
+            android:id="@+id/mainActivity_menuOption_Options"
             android:layout_width="200dip"
             android:layout_height="wrap_content"
+            android:layout_marginTop="20dip"
+            android:fontFamily="@font/my_custom_font"
             android:gravity="center"
             android:text="@string/menu_Options"
             android:textColor="@color/colorForestBlues"
-            android:layout_marginTop="20dip" />
+            android:textSize="40dip"
+            android:textStyle="bold" />
+
     </LinearLayout>
 </LinearLayout>
