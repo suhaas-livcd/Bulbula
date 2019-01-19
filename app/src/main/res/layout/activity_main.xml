@@ -1,27 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorMidnightBlue">
-    <TextView
-        android:id="@+id/mainActivity_textView_Intro_1"
+    android:background="@color/colorSpray"
+    android:orientation="vertical">
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/app_intro_1"
-        android:gravity="center"
-        android:textColor="@color/colorGreenSear"/>
-    <TextView
-        android:id="@+id/mainActivity_textView_Intro_2"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/app_intro_2"
-        android:gravity="center"
-        android:textColor="@color/colorGreenSear"/>
-    <TextView
-        android:id="@+id/mainActivity_textView_Intro_3"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/app_intro_3"
-        android:gravity="center"
-        android:textColor="@color/colorGreenSear"/>
-</FrameLayout>
+        android:orientation="vertical"
+        android:layout_gravity="center"
+        android:gravity="center">
+
+        <TextView
+            android:id="@+id/mainActivity_textView_Intro_1"
+            android:layout_width="200dip"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/menu_Start"
+            android:textColor="@color/colorForestBlues" />
+
+        <TextView
+            android:id="@+id/mainActivity_textView_Intro_2"
+            android:layout_width="200dip"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/menu_Sound"
+            android:textColor="@color/colorForestBlues"
+            android:layout_marginTop="20dip" />
+
+        <TextView
+            android:id="@+id/mainActivity_textView_Intro_3"
+            android:layout_width="200dip"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/menu_Options"
+            android:textColor="@color/colorForestBlues"
+            android:layout_marginTop="20dip" />
+    </LinearLayout>
+</LinearLayout>
