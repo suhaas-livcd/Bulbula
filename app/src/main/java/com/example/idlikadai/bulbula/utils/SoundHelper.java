@@ -11,10 +11,6 @@ import android.media.SoundPool;
 import com.example.idlikadai.bulbula.R;
 
 
-/**
- * Created by Rohan on 22-May-17.
- */
-
 public class SoundHelper {
 
     private MediaPlayer mMusicPlayer;
@@ -50,7 +46,7 @@ public class SoundHelper {
                 mLoaded = true;
             }
         });
-        mSoundID = mSoundPool.load(activity, R.raw.balloon_pop, 1);
+        mSoundID = mSoundPool.load(activity, R.raw.bubble_pop_sound, 1);
     }
 
     public void playSound() {

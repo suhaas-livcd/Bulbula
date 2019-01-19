@@ -4,6 +4,7 @@ import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
@@ -26,7 +27,7 @@ public class StartActivity extends AppCompatActivity implements Bubble.BubbleLis
     private static final int MAX_ANIMATION_DELAY = 1500;
     private static final int MIN_ANIMATION_DURATION = 1000;
     private static final int MAX_ANIMATION_DURATION = 8000;
-    private static final int NUMBER_OF_PINS = 5;
+    private static final int NUMBER_OF_PINS = 9;
     private static final int BUBBLE_PER_LEVEL = 10;
 
     private ViewGroup mContentView;
@@ -41,6 +42,17 @@ public class StartActivity extends AppCompatActivity implements Bubble.BubbleLis
     private boolean mGameStopped = true;
     private int mLevel, mScore, mPinsUsed;
     private int mBubblesPopped;
+
+    private ImageView
+            mhealth_100 = null,
+            mhealth_90 = null,
+            mhealth_80 = null,
+            mhealth_70 = null,
+            mhealth_60 = null,
+            mhealth_50 = null,
+            mhealth_40 = null,
+            mhealth_30 = null,
+            mhealth_20 = null;
 
     private SoundHelper mSoundHelper;
 
@@ -79,15 +91,24 @@ public class StartActivity extends AppCompatActivity implements Bubble.BubbleLis
 
         mScoreDisplay = (TextView) findViewById(R.id.textView_gameScore);
         mLevelDisplay = (TextView) findViewById(R.id.textView_gameLevel);
-        mPinImages.add((ImageView) findViewById(R.id.health_100));
-        mPinImages.add((ImageView) findViewById(R.id.health_90));
-        mPinImages.add((ImageView) findViewById(R.id.health_80));
-        mPinImages.add((ImageView) findViewById(R.id.health_70));
-        mPinImages.add((ImageView) findViewById(R.id.health_60));
-        mPinImages.add((ImageView) findViewById(R.id.health_50));
-        mPinImages.add((ImageView) findViewById(R.id.health_40));
-        mPinImages.add((ImageView) findViewById(R.id.health_30));
-        mPinImages.add((ImageView) findViewById(R.id.health_20));
+//        mPinImages.add((ImageView) findViewById(R.id.health_100));
+//        mPinImages.add((ImageView) findViewById(R.id.health_90));
+//        mPinImages.add((ImageView) findViewById(R.id.health_80));
+//        mPinImages.add((ImageView) findViewById(R.id.health_70));
+//        mPinImages.add((ImageView) findViewById(R.id.health_60));
+//        mPinImages.add((ImageView) findViewById(R.id.health_50));
+//        mPinImages.add((ImageView) findViewById(R.id.health_40));
+//        mPinImages.add((ImageView) findViewById(R.id.health_30));
+//        mPinImages.add((ImageView) findViewById(R.id.health_20));
+        mhealth_100 = (ImageView) findViewById(R.id.health_100);
+        mhealth_90 = (ImageView) findViewById(R.id.health_90);
+        mhealth_80 = (ImageView) findViewById(R.id.health_80);
+        mhealth_70 = (ImageView) findViewById(R.id.health_70);
+        mhealth_60 = (ImageView) findViewById(R.id.health_60);
+        mhealth_50 = (ImageView) findViewById(R.id.health_50);
+        mhealth_40 = (ImageView) findViewById(R.id.health_40);
+        mhealth_30 = (ImageView) findViewById(R.id.health_30);
+        mhealth_20 = (ImageView) findViewById(R.id.health_20);
         mGoButton = (Button) findViewById(R.id.settings);
 
         updateDisplay();
@@ -95,6 +116,8 @@ public class StartActivity extends AppCompatActivity implements Bubble.BubbleLis
         mSoundHelper = new SoundHelper(this);
         mSoundHelper.prepareMusicPlayer(this);
 
+        mContentView.performClick();
+        findViewById(R.id.settings).performClick();
 
     }
 
@@ -124,9 +147,9 @@ public class StartActivity extends AppCompatActivity implements Bubble.BubbleLis
         mLevel = 0;
         mPinsUsed = 0;
 
-        for (ImageView pin : mPinImages) {
-            pin.setImageResource(R.drawable.ic_cards_heart);
-        }
+//        for (ImageView pin : mPinImages) {
+//            pin.setImageResource(R.drawable.ic_cards_heart);
+//        }
 
         mGameStopped = false;
         startLevel();
@@ -174,15 +197,17 @@ public class StartActivity extends AppCompatActivity implements Bubble.BubbleLis
             mScore++;
         } else {
             mPinsUsed++;
-            if (mPinsUsed <= mPinImages.size()) {
-                mPinImages.get(mPinsUsed - 1)
-                        .setImageResource(R.drawable.ic_heart_off);
+            if (mPinsUsed <= NUMBER_OF_PINS) {
+//                mPinImages.get(mPinsUsed - 1)
+//                        .setImageResource(R.drawable.ic_heart_off);
+                updateUserLiveLeft(mPinsUsed);
+                Log.d("Suhaas", "mPinsUsed : " + mPinsUsed);
             }
             if (mPinsUsed == NUMBER_OF_PINS) {
                 gameOver(true);
                 return;
             } else {
-                Toast.makeText(this, "Missed that one!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Missed that one! " + mPinsUsed, Toast.LENGTH_SHORT).show();
             }
         }
         updateDisplay();
@@ -223,6 +248,44 @@ public class StartActivity extends AppCompatActivity implements Bubble.BubbleLis
         mLevelDisplay.setText(String.valueOf(mLevel));
     }
 
+    private void updateUserLiveLeft(int mPinsUsed) {
+        switch (mPinsUsed) {
+            case 1:
+                mhealth_100.setVisibility(View.GONE);
+                mhealth_90.setVisibility(View.VISIBLE);
+                break;
+            case 2:
+                mhealth_90.setVisibility(View.GONE);
+                mhealth_80.setVisibility(View.VISIBLE);
+                break;
+            case 3:
+                mhealth_70.setVisibility(View.VISIBLE);
+                break;
+            case 4:
+                mhealth_70.setVisibility(View.GONE);
+                mhealth_60.setVisibility(View.VISIBLE);
+                break;
+            case 5:
+                mhealth_60.setVisibility(View.GONE);
+                mhealth_50.setVisibility(View.VISIBLE);
+                break;
+            case 6:
+                mhealth_40.setVisibility(View.VISIBLE);
+                break;
+            case 7:
+                mhealth_40.setVisibility(View.GONE);
+                mhealth_30.setVisibility(View.VISIBLE);
+                break;
+            case 8:
+                mhealth_30.setVisibility(View.GONE);
+                mhealth_20.setVisibility(View.VISIBLE);
+                break;
+            case 9:
+                break;
+            default:
+        }
+    }
+
     @Override
     protected void onStop() {
         super.onStop();
@@ -250,9 +313,12 @@ public class StartActivity extends AppCompatActivity implements Bubble.BubbleLis
 
 //              Get a random horizontal position for the next bubble
                 Random random = new Random();
-                int xPosition = random.nextInt(mScreenWidth - 200);
-                publishProgress(xPosition);
-                bubblesLaunched++;
+                if (mScreenWidth > 0) {
+                    int xPosition = random.nextInt(mScreenWidth - 200);
+                    publishProgress(xPosition);
+                    bubblesLaunched++;
+                }
+
 
 //              Wait a random number of milliseconds before looping
                 int delay = random.nextInt(minDelay) + minDelay;

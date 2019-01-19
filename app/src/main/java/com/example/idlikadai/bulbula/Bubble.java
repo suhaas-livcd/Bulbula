@@ -28,8 +28,11 @@ public class Bubble extends android.support.v7.widget.AppCompatImageView impleme
 
         mListener = (BubbleListener) context;
 
-        this.setImageResource(R.drawable.ic_star);
-        this.setColorFilter(color);
+
+        this.setImageResource(R.mipmap.ic_soap_bubble_foreground);
+//        this.setColorFilter(color);
+//        this.setColorFilter(ContextCompat.getColor(context, R.color.colorBrightYarrow),
+//                android.graphics.PorterDuff.Mode.MULTIPLY);
 
         int rawWidth = rawHeight / 2;
 
