@@ -1,14 +1,16 @@
 package com.example.idlikadai.bulbula;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
     private TextView
-            mIntroTextView_intro_1 = null,
-            mIntroTextView_intro_2 = null,
-            mIntroTextView_intro_3 = null;
+            mMenuOption_Start = null,
+            mMenuOption_Sound = null,
+            mMenuOption_Options = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,9 +23,17 @@ public class MainActivity extends AppCompatActivity {
      * To initialize the resources with the specified resource ID
      */
     private void initResources() {
-        mIntroTextView_intro_1 = findViewById(R.id.mainActivity_menuOption_Start);
-        mIntroTextView_intro_2 = findViewById(R.id.mainActivity_menuOption_Sound);
-        mIntroTextView_intro_3 = findViewById(R.id.mainActivity_menuOption_Options);
+        mMenuOption_Start = findViewById(R.id.mainActivity_menuOption_Start);
+        mMenuOption_Sound = findViewById(R.id.mainActivity_menuOption_Sound);
+        mMenuOption_Options = findViewById(R.id.mainActivity_menuOption_Options);
+        mMenuOption_Start.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent mStartGameIntent = new Intent(MainActivity.this, StartActivity.class);
+                mStartGameIntent.putExtra("launchGame", "new");
+                startActivity(mStartGameIntent);
+            }
+        });
     }
 
 }
